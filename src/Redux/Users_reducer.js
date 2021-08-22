@@ -44,6 +44,7 @@ const usersReducer = (state = initialState, action) => {
             }
         
         case SET_USERS: {
+           
             return { ...state, users: action.users }
             }
 
@@ -81,7 +82,7 @@ export const toggleFollowingprogress = (isFetching, userId) => ({ type: TOGGLE_I
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
     
-    return (dispatch) => {
+    return (dispatch) => {        
         dispatch (toggleIsFetching (true));
 
         usersAPI.getUsers(currentPage, pageSize).then ( data => {

@@ -1,5 +1,4 @@
-import { stopSubmit } from "redux-form";
-import { authAPI } from "../Api/api";
+
 import { getAuthUserDataThunkCreator } from "./Auth_reducer";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
@@ -32,25 +31,6 @@ export const initializeApp = () => (dispatch) => {
     });    
 }
 
-// export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => {
-//     authAPI.login(email, password, rememberMe)
-//             .then ( response => {
-//                if (response.data.resultCode === 0) {
-//                     dispatch (getAuthUserDataThunkCreator ());
-//                } else {                   
-//                    let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
-//                    dispatch(stopSubmit("login", {_error: message}));
-//                }
-//             });
-// }
 
-// export const logoutThunkCreator = () => (dispatch) => {
-//     authAPI.logout()
-//             .then ( response => {
-//                if (response.data.resultCode === 0) {
-//                 dispatch (setAuthUserData (null, null, null, false));
-//                }
-//             });
-// }
 
 export default appReducer;

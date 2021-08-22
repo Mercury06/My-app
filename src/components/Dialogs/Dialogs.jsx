@@ -1,13 +1,12 @@
 import React from 'react';
-import s from './Dialogs.module.css';
-import {NavLink, Redirect} from 'react-router-dom';
+import s from './Dialogs.module.scss';
+import {Redirect} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem'; 
 import Message from './Message/Message';
-import { sendMessageCreator, updateNewMessageBodyCreator } from '../../Redux/Dialogs_reducer';
-import Login from '../Login/Login';
 import { Field, reduxForm } from 'redux-form';
 import { Textarea } from '../common/FormsControls/FormsControls';
 import { maxLengthCreator, required } from '../Utils/validators/validators';
+
 
 const Dialogs = (props) => {
     
@@ -17,14 +16,7 @@ const Dialogs = (props) => {
     let messagesElements = state.messages.map ( m => <Message message ={m.message} key={m.id} />);
     let newMessageBody = state.newMessageBody;
    
-    // let onSendMessageClick = () => {
-    //     props.sendMessage();
-    // }
-    // let onNewMessageChange = (e) => {
-    //     let body = e.target.value;
-    //     props.updateNewMessageBody(body);
-    // }
-
+   
     let addNewMessage = (values) => {
         props.sendMessage (values.newMessageBody);
     } 
@@ -33,16 +25,11 @@ const Dialogs = (props) => {
     return (
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>
-                    {dialogsElements}
+                    {dialogsElements}                   
                 </div>    
                 <div className={s.messages}>
                     <div>{messagesElements}</div>
-                    {/* <form>
-                        <div><textarea value = {newMessageBody} 
-                                       onChange = {onNewMessageChange}
-                                       placeholder='Enter your message'></textarea></div>
-                        <div><button onClick={onSendMessageClick}>Send</button></div>
-                    </form>                   */}
+                   
                     <AddMessageFormRedux onSubmit = {addNewMessage}/> 
                 </div>
             </div>

@@ -1,21 +1,19 @@
 import { stopSubmit } from "redux-form";
 import { usersAPI } from "../Api/api";
 import { profileAPI } from "../Api/api";
-
 const ADD_POST = 'ADD-POST';
-//const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     posts: [
-        {id:'1', message: 'Hi! how are you?', likesCount: 12},
-        {id:'2', message: 'It`s my first post', likesCount: 11},
-        {id:'3', message: 'Hello kitty!'},
-        {id:'4', message: 'Z-z-z'},
-        {id:'5', message: 'Z-z-z'},
-        {id:'6', message: 'Z-z-z'}
+        {id:'1', message: 'Hi! how are you?', likesCount: 12, avaUrl: null},
+        {id:'2', message: 'You looks so dangerous...', likesCount: 11, avaUrl: null},
+        {id:'3', message: 'Hello gangster!', likesCount: 6, avaUrl: null},
+        {id:'4', message: 'Add me to fliends', likesCount: 11, avaUrl: null},
+        {id:'5', message: 'Z-z-z', likesCount: 9, avaUrl: null},
+        {id:'6', message: 'Z-z-z', likesCount: 9, avaUrl: null}
       ],
     //newPostText: 'added texx',
     profile: null,
@@ -25,26 +23,25 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
+          
             let newPost = {
-                id: 5,
+                id: 7,
                 message: action.newPostText,
-                likesCount: 0
+                likesCount: 6, 
+                avaUrl: action.avaUrl,
+                fullName: action.fullName
               };
+              
             return {
+                
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
-            };
-             
+            };             
         }
-        // case UPDATE_NEW_POST_TEXT: {
-        //     return {
-        //         ...state,
-        //         newPostText: action.newText
-        //     }
-        // }
+        
         case SET_STATUS: {
-            debugger;
+            
             return {
                 ...state,
                 status: action.status
@@ -61,7 +58,10 @@ const profileReducer = (state = initialState, action) => {
     }    
     
 }
-export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText})
+export const addPostActionCreator = (newPostText, avaUrl, fullName) => {
+
+return (
+({type: ADD_POST, newPostText, avaUrl, fullName}))}
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos})
@@ -74,15 +74,13 @@ export const getUserProfile = (userId) => async (dispatch) => {
 
 export const getStatus = (userId) => async (dispatch) => {
     let response = await profileAPI.getStatus (userId)
-    debugger;
     dispatch (setStatus (response.data)); 
 } 
 
 export const updateStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatus (status)
-    debugger;
     if (response.data.resultCode === 0) {
-        dispatch (setStatus (status));
+    dispatch (setStatus (status));
 }} 
 
 export const savePhoto = (file) => async (dispatch) => {

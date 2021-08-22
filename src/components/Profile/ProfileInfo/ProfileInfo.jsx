@@ -1,19 +1,18 @@
 import React from 'react';
-import s from './ProfileInfo.module.css';
-import {Preloader} from './../../common/preloader/Preloader';
-import ProfileStatus from './ProfileStatus';
+import s from './ProfileInfo.module.scss';
 import ProfileStatuswithHooks from './ProfileStatuswithHooks';
 import userPhoto from './../../../assets/images/ava_rez.jpg';
 import { useState } from 'react';
 import ProfileDataForm from "./ProfileDataForm";
-import { saveProfile } from '../../../Redux/Profile_reducer';
+import {UploadIcon} from './../../common/Icons/Boxicons';
+
 
 const ProfileInfo = (props) => {
-    //debugger;
+    
     let [editMode, setEditMode] = useState(false);
     
     if (!props.profile) {
-        return <img src='./../../../assets/images/spin.gif' />
+        return <img src='./../../../assets/images/spin.gif' alt="Loading..."/>
     }
 
     const onMainPhotoSelected = (e) => {
@@ -31,27 +30,32 @@ const ProfileInfo = (props) => {
 
 
     return ( 
-        <div>
-            <div className={s.img}>
-                <img src="https://strahu-net.com/upload/iblock/3a1/elbrus_221.jpg" />
-            </div>
+                  
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} />
-                { props.isOwner && <input type={'file'} onChange = {onMainPhotoSelected}/>}
+            <div className={s.avatarWrapper}>    
                 
+                <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} />
+                { props.isOwner && <div className={s.spanText}><div className={s.spanStyle}><label for={"inputId"} className={s.labelStyle}><UploadIcon /> Set new avatar</label></div></div> }
+                
+                { props.isOwner && 
+                <div className={s.inputWrapper}> 
+                    <input className={s.inputButton} type={'file'} id={'inputId'} onChange = {onMainPhotoSelected}/>
+          
+                </div>}
+            </div>
                 { editMode ? <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} /> 
                            : <ProfileData profile={props.profile} isOwner={props.isOwner} 
                                           toEditMode={ () => {setEditMode(true)}} />}
                 <ProfileStatuswithHooks status={props.status} updateStatus={props.updateStatus} />
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
-            </div>
-        </div> 
+          
+            </div> 
         )  
     }
 
 const ProfileData = ({profile, isOwner, toEditMode}) => {
     return <div>
-                { isOwner && <div><button onClick={toEditMode}>edit</button></div> }
+                { isOwner && <div className={s.profileButton}><button onClick={toEditMode}>edit profile </button></div> }
+                    <div style={{ marginTop: '18px'}}>
                     <div>
                         <b>Full name</b> {profile.fullName}
                     </div>
@@ -72,6 +76,7 @@ const ProfileData = ({profile, isOwner, toEditMode}) => {
                         <b>Contacts:</b> {Object.keys(profile.contacts).map(key =>{
                             return <Contacts contactTitle={key} key={key} contactValue={profile.contacts[key]} />
                         })}
+                    </div>
                     </div>
     </div>
 }

@@ -38,7 +38,7 @@ export const profileAPI = {
         return instance.get (`profile/status/` + userId);
     },
     updateStatus (status) {
-        debugger;
+        
         return instance.put (`profile/status/` + {status: status});
     },
     savePhoto (photoFile) {
@@ -51,7 +51,7 @@ export const profileAPI = {
         });
     },
     saveProfile (profile) {
-        debugger;
+        
         return instance.put (`profile/`, profile);
     }
 }

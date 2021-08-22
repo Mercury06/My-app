@@ -5,7 +5,7 @@ import { Input } from '../common/FormsControls/FormsControls';
 import { required } from '../Utils/validators/validators';
 import { loginThunkCreator } from '../../Redux/Auth_reducer';
 import {Redirect} from 'react-router-dom';
-import style from "./../common/FormsControls/FormsControle.module.css"
+import style from "./../common/FormsControls/FormsControle.module.scss"
 
 const LoginForm = (props) => {
     console.log("RERENDER");

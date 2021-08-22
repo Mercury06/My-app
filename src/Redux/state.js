@@ -1,6 +1,3 @@
-/*let rerenderEntireTree = () => {
-  console.log ('State changed');
-} */
 import profileReducer from "./Profile_reducer";
 import dialogsReducer from "./Dialogs_reducer";
 import sidebarReducer from "./Sidebar_reducer";
@@ -12,10 +9,10 @@ let store = {
         posts: [
             {id:'1', message: 'Hi! how are you?', likesCount: 12},
             {id:'2', message: 'It`s my first post', likesCount: 11},
-            {id:'3', message: 'Hello kitty!'},
-            {id:'4', message: 'Z-z-z'},
-            {id:'5', message: 'Z-z-z'},
-            {id:'6', message: 'Z-z-z'}
+            {id:'3', message: 'Hello kitty!', likesCount: 12},
+            {id:'4', message: 'Z-z-z', likesCount: 6},
+            {id:'5', message: 'Z-z-z', likesCount: 2},
+            {id:'6', message: 'Z-z-z', likesCount: 6}
           ],
         newPostText: 'added text'
     },
@@ -50,20 +47,6 @@ let store = {
     this._callSubscriber = observer;
   },
   
-/*  addPost () {
-    let newPost ={
-      id: 5,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0
-    };
-    this._state.profilePage.posts.push (newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber (this._state);
-  }, 
-  updateNewpostText (newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber (this._state);
-  }, */
 
   dispatch (action) {
     this._state.profilePage = profileReducer (this._state.profilePage, action);

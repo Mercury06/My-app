@@ -1,0 +1,61 @@
+.descriptionBlock {
+    padding: 10px;
+}
+
+.mainPhoto {
+    max-width: 200px;
+}
+
+.contact {
+    padding-left: 10px;
+}
+
+.img {    
+    height: 400px;
+    max-width: auto;
+    display: flex;
+}
+.avatarWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 200px;
+}
+.avatarWrapper:hover .spanStyle {
+    opacity: 0.8;
+    transition: 1s;
+}
+
+.spanText {
+    position: absolute;
+    bottom: 23px;
+    left: 0px;
+    right: 0px    
+}
+.spanStyle {
+    border: 0px solid rgb(255, 255, 255);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    font-weight: bold;
+    background-color: slategray; 
+    /*backdrop-filter: blur(5px);*/
+    opacity: 0.5;
+    transition: 1s;
+}
+.spanStyle:hover {
+    opacity: 0.8;
+    transition: 1s;
+    /*backdrop-filter: blur(9px);*/
+}
+.spanText:hover {
+    cursor: pointer;
+}
+.inputButton {
+    visibility: hidden;  
+}
+
+.labelStyle:hover { 
+    cursor: pointer;
+}

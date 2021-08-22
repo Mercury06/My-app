@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import s from './ProfileInfo.module.css';
 
 
 const ProfileStatuswithHooks = (props) => {
@@ -25,7 +24,7 @@ const ProfileStatuswithHooks = (props) => {
     const onStatusChange = (e) => {
         
         setStatus (e.currentTarget.value)
-        debugger;
+        
     }
     
         return ( 
