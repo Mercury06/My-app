@@ -16,12 +16,12 @@ const fetching_style = {
 class UsersContainer extends React.Component {
     
     componentDidMount () {
-        
+        debugger;
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);  
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize, this.props.currentPage );
+        this.props.getUsersThunkCreator(pageNumber, this.props.currentPage, this.props.pageSize );
         
        
     }

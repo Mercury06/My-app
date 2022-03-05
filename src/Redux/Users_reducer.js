@@ -100,13 +100,9 @@ export const followThunkCreator = (userId) => {
     return (dispatch) => {
         dispatch (toggleFollowingprogress(true, userId));
         usersAPI.follow(userId)
-        // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, 
-        // {withCredentials: true,
-        // headers: {
-        //     "API-KEY": "2f7e0949-cb64-4e72-9959-b867ce96f15c"
-        // }})
+       
             .then ( response => {
-                if (response.data.resultCode == 0) {
+                if (response.data.resultCode === 0) {
                     dispatch (follow (userId));
                     }
                     dispatch (toggleFollowingprogress(false, userId));                    
@@ -125,7 +121,7 @@ export const unfollowThunkCreator = (userId) => {
         //     "API-KEY": "2f7e0949-cb64-4e72-9959-b867ce96f15c"
         // }})
             .then ( response => {
-                if (response.data.resultCode == 0) {
+                if (response.data.resultCode === 0) {
                     dispatch (unfollow (userId));
                     }
                     dispatch (toggleFollowingprogress(false, userId));                    
